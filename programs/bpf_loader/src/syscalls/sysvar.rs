@@ -33,6 +33,7 @@ fn get_sysvar<T: std::fmt::Debug + Sysvar + SysvarId + Clone>(
     Ok(SUCCESS)
 }
 
+/// this macro will create vm implementaion of the logic passed in
 declare_builtin_function!(
     /// Get a Clock sysvar
     SyscallGetClockSysvar,

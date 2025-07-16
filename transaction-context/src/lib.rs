@@ -613,6 +613,14 @@ pub struct TransactionReturnData {
 /// Loaded instruction shared between runtime and programs.
 ///
 /// This context is valid for the entire duration of a (possibly cross program) instruction being processed.
+///
+/// | Field                  | Meaning                                                      |
+/// | ---------------------- | ------------------------------------------------------------ |
+/// | `nesting_level`        | Whether it's a CPI or top-level instruction                  |
+/// | `instruction_accounts` | Which accounts were passed in, and their roles               |
+/// | `program_accounts`     | Indexes of the executable program                            |
+/// | `instruction_data`     | Serialized args to your instruction (e.g., variant + params) |
+///
 #[derive(Debug, Clone, Default, Eq, PartialEq)]
 pub struct InstructionContext {
     nesting_level: usize,
