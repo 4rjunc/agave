@@ -520,6 +520,14 @@ pub fn create_program_runtime_environment_v1<'a>(
         SyscallRemainingComputeUnits::vm
     )?;
 
+    // CUSTOM SYSCALL: Accessing the magic number
+    register_feature_gated_function!(
+        result,
+        remaining_compute_units_syscall_enabled,
+        "sol_get_magic_number",
+        SyscallGetMagicNumnberSysvar::vm
+    )?;
+
     // Alt_bn128_compression
     register_feature_gated_function!(
         result,
@@ -1923,6 +1931,22 @@ declare_builtin_function!(
     }
 );
 
+// custom sysvar: jus returns a number
+declare_builtin_function!(
+    /// Get a magic-number sysvar
+    SyscallGetMagicNumnberSysvar,
+    fn rust(
+        _invoke_context: &mut InvokeContext,
+        _arg1: u64,
+        _arg2: u64,
+        _arg3: u64,
+        _arg4: u64,
+        _arg5: u64,
+        _memory_mapping: &mut MemoryMapping,
+    ) -> Result<u64, Error> {
+        Ok(2002)
+    }
+);
 declare_builtin_function!(
     /// alt_bn128 g1 and g2 compression and decompression
     SyscallAltBn128Compression,
