@@ -1947,6 +1947,7 @@ declare_builtin_function!(
         Ok(2002)
     }
 );
+
 declare_builtin_function!(
     /// alt_bn128 g1 and g2 compression and decompression
     SyscallAltBn128Compression,
